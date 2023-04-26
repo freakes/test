@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<h2>Добавить модератора</h2>
+<form method="POST">
+	<br>
+	{% csrf_token %}
+	{% for user in users %}
+		{% if user.groups.get.name != 'Moderator' %}
+			<input type="checkbox" name="users" value="{{ user.id }}"> {{ user.username }}<br>
+		{% endif %}
+	{% endfor %}
+	<br>
+	<button type="submit">Добавить</button>
+</form>
+{% endblock content %}
